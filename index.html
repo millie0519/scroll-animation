@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=10,user-scalable=yes">
+    <title>스크롤 애니메이션</title>
+
+    <link rel="stylesheet" href="animation_v1.1.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        div{margin: 0; padding: 0;}
+        .txcw{color: #fff;}
+        .bgcw{background-color: #fff;}
+        ul{list-style:none; padding: 0; margin: 0;}
+
+        body{
+            background-color: #333;
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;padding: 0;
+            transition: background-color 0.8s;
+        }
+        .ani-wrap{
+            background-color: #fff;
+            background-image: url('https://t1.daumcdn.net/cfile/tistory/23189F3B597434E916?original');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .center{
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .cover{
+            position: relative;
+            text-align: center;
+            font-size: 30px;
+            height: 100vh;
+            padding-top: 100px;
+            box-sizing: border-box;
+        }        
+
+        @keyframes bounce {
+            from {
+                padding-bottom: 20px;
+            }
+            to {
+                padding-bottom: 0;
+            }
+        }
+        .cover .scrollbox{
+            position: absolute;
+            bottom: 10vh;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 0.7s linear infinite alternate;
+        }
+
+
+        h2{
+            text-align: center;
+            margin-top: 150px;
+            margin-bottom: -30px;
+            font-size: 35px;
+        }
+        .box{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 350px;
+            height: 200px;
+            margin: 80px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #eee;
+            box-sizing: border-box;
+            border: 2px solid #ddd;
+        }
+        .box02{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 200px;
+            margin: 80px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #eee;
+            box-sizing: border-box;
+            border: 2px solid #ddd;
+        }
+        .box .tit{font-weight: 600;}
+        .box02 .tit{font-weight: 600;}
+
+        .circle-wrap{
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin: 120px 5% 0;
+            border: 2px solid #000;
+            padding: 100px 5%;
+            box-sizing: border-box;
+        }
+        .circle-wrap .tit{
+            position: absolute;
+            font-size: 30px;
+            padding: 20px 40px;
+            margin: 0;
+            background-color: #fff;
+        }
+        .circle-wrap .tit01{
+            left: 5%;
+            top: 0;
+            transform: translateY(-50%);
+        }
+        .circle-wrap .tit02{
+            right: 5%;
+            bottom: 0;
+            transform: translateY(50%);
+        }
+        .circle{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin: 0 25px;
+        }
+        .circle p{
+            color: #fff;
+            font-size: 13px;
+            text-align: center;
+        }
+        .circle:nth-of-type(1){background-color: #fa0267;}
+        .circle:nth-of-type(2){background-color: #e4077c;}
+        .circle:nth-of-type(3){background-color: #c50d9a;}
+        .circle:nth-of-type(4){background-color: #a614b8;}
+        .circle:nth-of-type(5){background-color: #9118cd;}
+
+        .ex-wrap{
+            text-align: center;
+            padding: 80px 0 150px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .ex-wrap-total{
+            padding-bottom: 100px;
+        }
+        .ex-wrap-total .center{
+            border-top: 1px solid #eee;
+        }
+        .ex-wrap-total .tit02{
+            font-size: 42px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 25px;
+            margin-top: 80px;
+            text-shadow: 5px 0 #e5e5e5;
+        }
+        .ex-wrap-total li{
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .ex-wrap-total li p{margin: 0;}
+        .ex-wrap-total li .tag{margin-right: 5px;}
+
+
+        .back-wrap{
+            width: 100%;
+        }       
+        .pcen{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            text-align: center;
+            color: #666;
+            background-color: #fff;
+            padding: 20px 50px;
+            border-radius: 20px;
+        }
+        
+        .contbox{
+            padding: 100px 0;
+            margin-bottom: 200px;
+            border-top: 1px solid #666;
+            border-bottom : 1px solid #666;
+        }
+        .contbox h4{
+            display: inline-block;
+            padding: 5px 20px;
+            font-size: 24px;
+            background-color: #666;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .contbox p.sub{
+            margin-top: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ani-wrap">
+        <div class="center bgcw">        
+            <div class="cover">
+                <h1>스크롤 애니메이션 효과</h1>
+
+                <div class="scrollbox">
+                    <span>SCROLL</span>
+                    <div class="ico" style="transform: rotate(90deg);">〉</div>
+                </div>
+            </div>
+            
+            <!-- fade 효과 -->
+            <h2>----- FADE -----</h2>
+            <div class="box motion m-fade">
+                <p class="tit">fade</p>
+                <p>&lt;div class="motion m-fade"&gt;&lt;/div&gt;</p>
+            </div>
+
+        
+            <!-- fade ver2 -->
+            <h2>----- FADE ver2 (move) -----</h2>
+            <div class="box motion m-down">
+                <p class="tit">fade Down</p>
+                <p>&lt;div class="motion m-down"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-up">
+                <p class="tit">fade Up</p>
+                <p>&lt;div class="motion m-up"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-right">
+                <p class="tit">fade Right</p>
+                <p>&lt;div class="motion m-right"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-left">
+                <p class="tit">fade Left</p>
+                <p>&lt;div class="motion m-left"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-down-right">
+                <p class="tit">fade Down Right</p>
+                <p>&lt;div class="motion m-down-right"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-down-left">
+                <p class="tit">fade Down Left</p>
+                <p>&lt;div class="motion m-down-left"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-up-right">
+                <p class="tit">fade Up Right</p>
+                <p>&lt;div class="motion m-up-right"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-up-left">
+                <p class="tit">fade Up Left</p>
+                <p>&lt;div class="motion m-up-left"&gt;&lt;/div&gt;</p>
+            </div>
+        
+        
+            <!-- fade ver3 (바운싱추가) -->
+            <h2>----- FADE ver3 (move + bounce) -----</h2>
+            <div class="box motion m-down-b">
+                <p class="tit">fade Down</p>
+                <p>&lt;div class="motion m-up-b"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-up-b">
+                <p class="tit">fade Up</p>
+                <p>&lt;div class="motion m-down-b"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-right-b">
+                <p class="tit">fade Right</p>
+                <p>&lt;div class="motion m-right-b"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-left-b">
+                <p class="tit">fade Left</p>
+                <p>&lt;div class="motion m-left-b"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-down-right-b">
+                <p class="tit">fade Down Right</p>
+                <p>&lt;div class="motion m-down-right-b"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-down-left-b">
+                <p class="tit">fade Down Left</p>
+                <p>&lt;div class="motion m-down-left-b"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-up-right-b">
+                <p class="tit">fade Up Right</p>
+                <p>&lt;div class="motion m-up-right-b"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-up-left-b">
+                <p class="tit">fade Up Left</p>
+                <p>&lt;div class="motion m-up-left-b"&gt;&lt;/div&gt;</p>
+            </div>
+
+
+            <!-- 펼쳐지는 효과 -->
+            <h2>----- Roll -----</h2>
+            <div class="box02 motion m-roll-lft">
+                <p class="tit">Roll Left</p>
+                <p>&lt;div class="motion m-roll-lft"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box02 motion m-roll-rgt">
+                <p class="tit">Roll Right</p>
+                <p>&lt;div class="motion m-roll-rgt"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box02 motion m-roll-up">
+                <p class="tit">Roll Up</p>
+                <p>&lt;div class="motion m-roll-up"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box02 motion m-roll-down">
+                <p class="tit">Roll Down</p>
+                <p>&lt;div class="motion m-roll-down"&gt;&lt;/div&gt;</p>
+            </div>
+
+
+            <h2>----- Zoom -----</h2>
+            <div class="box motion m-zoom-in">
+                <p class="tit">Zoom In</p>
+                <p>&lt;div class="motion m-zoom-in"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-zoom-out">
+                <p class="tit">Zoom Out</p>
+                <p>&lt;div class="motion m-zoom-out"&gt;&lt;/div&gt;</p>
+            </div>
+
+
+            <h2>----- Flip -----</h2>
+            <div class="box motion m-flip-left">
+                <p class="tit">Flip Left</p>
+                <p>&lt;div class="motion m-flip-left"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-flip-right">
+                <p class="tit">Flip Right</p>
+                <p>&lt;div class="motion m-flip-right"&gt;&lt;/div&gt;</p>
+            </div>
+
+            <div class="box motion m-flip-up">
+                <p class="tit">Flip up</p>
+                <p>&lt;div class="motion m-flip-up"&gt;&lt;/div&gt;</p>
+            </div>
+            <div class="box motion m-flip-down">
+                <p class="tit">Flip down</p>
+                <p>&lt;div class="motion m-flip-down"&gt;&lt;/div&gt;</p>
+            </div>
+
+
+            
+            <h2>----- Grouping -----</h2>
+            <div class="motion-wrap circle-wrap">
+                <p class="tit tit01">&lt;div class="motion-wrap"&gt;</p>
+                <p class="tit tit02">&lt;/div&gt;</p>
+                <div class="circle m-in m-down">
+                    <p>&lt;div class="m-in <br> m-down"&gt;&lt;/div&gt;</p>
+                </div>
+                <div class="circle m-in m-down">
+                    <p>&lt;div class="m-in <br> m-down"&gt;&lt;/div&gt;</p>
+                </div>
+                <div class="circle m-in m-up">
+                    <p>&lt;div class="m-in <br> m-up"&gt;&lt;/div&gt;</p>
+                </div>
+                <div class="circle m-in m-up">
+                    <p>&lt;div class="m-in <br> m-up"&gt;&lt;/div&gt;</p>
+                </div>
+                <div class="circle m-in m-up">
+                    <p>&lt;div class="m-in <br> m-up"&gt;&lt;/div&gt;</p>
+                </div>
+            </div>
+
+            <div class="ex-wrap">
+                <p class="center">
+                    한번에 순차적으로 활성화 시키고자하는 태그들의 부모객체에 <b>'motion-wrap'</b> 클래스를 입력하고 <br />
+                    활성화되는 자식 객체에는 <b>'m-in'</b> 클래스를 기본 속성으로 사용하며 원하는 해당 애니메이션의 속성값을 추가합니다.<br />
+                    <br />
+                    스크롤시 부모태그인 'motion-wrap'이 노출되면 그 안의 'm-in' 클래스를 가진 객체가 0.2초 간격으로 차례로 활성화됩니다. <br />
+                    상단으로 스크롤을 올리면서 객체가 다시 사라질때도 마찬가지로 차례대로 비활성화되니 참고 바랍니다.<br />
+                    <br />
+                    'm-in' 클래스 객체들은 서로 <b>형제관계</b>일때 정상적으로 작동합니다.
+                </p>
+            </div>
+
+            <div class="ex-wrap-total">
+                <div class="center">
+                    <p class="tit02">How to use</p>
+
+                    <ul>
+                        <li>
+                            <span class="tag">-</span>
+                            <p>
+                                animation_v-.css / animation_v-.js 파일을 반드시 호출해줍니다.
+                            </p>
+                        </li>
+                        <li>
+                            <span class="tag">-</span>
+                            <p>
+                                애니메이션 효과를 원하는 객체에 클래스를 추가하여 사용합니다. (aos 작업 방식과 유사)
+                            </p>
+                        </li>
+                        <li>
+                            <span class="tag">-</span>
+                            <p>
+                                'motion' 클래스를 기본 설정값으로 사용하며 원하는 해당 애니메이션의 속성값을 추가합니다. <br />
+                                &nbsp;&nbsp;ex) &lt;div class="motion <span style="color: #fa0267;">m-flip-down</span>"&gt;&lt;/div&gt;
+                            </p>
+                        </li>                        
+                    </ul>
+
+                    <p class="tit02">Caution</p>
+                    <ul>
+                        <li>
+                            <span class="tag">-</span>
+                            <p>
+                                페이지 퍼블리싱 작업시 애니메이션 기능에 사용된 클래스명을 다른 용도로 중복 사용하지 않도록 주의합니다.
+                            </p>
+                        </li>
+                        <li>
+                            <span class="tag">-</span>
+                            <p>
+                                위의 스크롤 애니메이션 기능은 CSS <b>'transform'</b> 속성을 활용하여 구현되었습니다. <br />
+                                따라서 애니메이션을 적용한 객체에 transform 속성이 이중으로 부여되면 오류가 발생하니 transform이 적용된 객체에는 애니메이션 <b>사용이 불가</b>합니다.
+                            </p>                            
+                        </li>
+                        <li>
+                            <span class="tag">-</span>
+                            <p>
+                                우측에서 나타나는 애니메이션의 경우에는 브라우저 창을 벗어난 크기만큼 가로 스크롤이 발생할 수 있습니다. <br />
+                                해당 부모객체에 <b>overflow : hidden;</b>을 적용해주면 해결됩니다.
+                            </p>                            
+                        </li>
+                    </ul>
+                </div>                
+            </div>
+        </div>
+
+    </div>
+
+    <div class="back-wrap bgc-wrap">        
+        <div class="cover m-bg-c" data-bgc="#333">
+            <h2 class="txcw" style="margin-top: 30px;">----- background-color CHANGE -----</h2>
+            <p class="txcw" style="font-size: 20px; margin-top: 100px;">
+                배경색 변경을 원하는 섹션의 data-bgc=""에 색상코드 입력 <br />
+                body의 background-color가 변경됩니다.<br />
+                <small>(※페이지 중간지점부터 사용할 경우에도 페이지 시작부분 배경색도 지정할 것)</small>
+            </p>
+            
+            <p class="pcen">
+                &lt;div class="m-bg-c" data-bgc="#333"&gt;&lt;/div&gt;
+            </p>
+
+            <div class="scrollbox txcw">
+                <span>SCROLL</span>
+                <div class="ico" style="transform: rotate(90deg);">〉</div>
+            </div>
+        </div>        
+        <div class="cover m-bg-c" data-bgc="#9118cd">
+            <h2 class="txcw">Purple</h2>
+            <p class="pcen">
+                &lt;div class="m-bg-c" data-bgc="#9118cd"&gt;&lt;/div&gt;
+            </p>
+        </div>
+        <div class="cover m-bg-c" data-bgc="#fa0267">
+            <h2 class="txcw">Pink</h2>
+            <p class="pcen">
+                &lt;div class="m-bg-c" data-bgc="#fa0267"&gt;&lt;/div&gt;
+            </p>
+        </div>        
+        <div class="cover m-bg-c" data-bgc="#222" style="height: unset; padding-bottom: 100px;">
+            <div class="contbox center">
+                <h3 class="txcw">----- Attachment -----</h3>
+
+                <h4 class="txcw">CSS</h4>
+                <p class="txcw sub">
+                    &lt;link rel="stylesheet" href="/.../animation.css"&gt;
+                </p>
+
+                <h4 class="txcw">JS</h4>
+                <p class="txcw sub">
+                    &lt;script src="/.../animation.js"&gt;&lt;/script&gt;
+                </p>
+            </div>
+               
+            <img src="https://c.tenor.com/UYKubj1fwrsAAAAC/%E0%B8%88%E0%B8%9A-the-end.gif" alt="">
+            
+            <p class="txcw" style="font-size: 16px; margin-top: 100px;">작성일 : 2022-02-17</p>
+            <p class="txcw" style="font-size: 16px; margin-top: 20px;">최종 수정일 : 2022-02-17</p>
+            <p class="txcw" style="font-size: 16px; margin-top: 20px;">작성자 : 권민지</p>
+        </div>
+    </div>
+   
+
+
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="animation_v1.1.js"></script>
+
+</body>
+</html>
