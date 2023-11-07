@@ -178,17 +178,16 @@
 
 
 /* active */
-.m-roll-lft.m-act{
-    clip-path: inset(0 0 0 0);
-    opacity: 1;
-}
 .motion.m-act, .motion-wrap.m-act .m-in{ /* active */
-    clip-path: inset(0 0 0 0);
     transform: translate(0,0) scale(1) rotate(0deg);
     opacity: 1;
 }
 .m-flip-left.m-act, .m-flip-right.m-act, .m-flip-up.m-act, .m-flip-down.m-act{
     transform: perspective(2500px) rotate(0deg);
+}
+.m-roll-lft.m-act, .m-roll-rgt.m-act, .m-roll-up.m-act, .m-roll-down.m-act{clip-path: inset(0 0 0 0); opacity: 1;}
+.motion-wrap.m-act .m-roll-lft, .motion-wrap.m-act .m-roll-rgt, .motion-wrap.m-act .m-roll-up, .motion-wrap.m-act .m-roll-down{
+	clip-path: inset(0 0 0 0); opacity: 1;
 }
 
 
