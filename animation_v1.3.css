@@ -1,6 +1,6 @@
 /* 
-    **ver1.2
-    **최종 수정일 2025-10-31
+    **ver1.3
+    **최종 수정일 2026-03-09
 */
 
 
@@ -168,6 +168,38 @@
 }
 
 
+/* (6-2) Flip - 부모 perspective 버전 (클래스를 부모 태그에 적용) */
+.m-flip-left-p  { perspective: 800px; }
+.m-flip-right-p { perspective: 800px; }
+.m-flip-up-p    { perspective: 800px; }
+.m-flip-down-p  { perspective: 800px; }
+
+.m-flip-left-p > * {
+    transform: rotateY(90deg);
+    transition: transform 1.8s, opacity 1s;
+    transition-timing-function: cubic-bezier(.175,.885,.32,1.275);
+    opacity: 0;
+}
+.m-flip-right-p > * {
+    transform: rotateY(-90deg);
+    transition: transform 1.8s, opacity 1s;
+    transition-timing-function: cubic-bezier(.175,.885,.32,1.275);
+    opacity: 0;
+}
+.m-flip-up-p > * {
+    transform: rotateX(-90deg);
+    transition: transform 1.8s, opacity 1s;
+    transition-timing-function: cubic-bezier(.175,.885,.32,1.275);
+    opacity: 0;
+}
+.m-flip-down-p > * {
+    transform: rotateX(90deg);
+    transition: transform 1.8s, opacity 1s;
+    transition-timing-function: cubic-bezier(.175,.885,.32,1.275);
+    opacity: 0;
+}
+
+
 /* (7) Grouping */
 .motion-wrap .m-in:nth-child(2){transition-delay: 0.2s;}
 .motion-wrap .m-in:nth-child(3){transition-delay: 0.4s;}
@@ -186,16 +218,16 @@
 
 
 /* delay */
-.delay-1{transition-delay: 0.1s;}
-.delay-2{transition-delay: 0.2s;}
-.delay-3{transition-delay: 0.3s;}
-.delay-4{transition-delay: 0.4s;}
-.delay-5{transition-delay: 0.5s;}
-.delay-6{transition-delay: 0.6s;}
-.delay-7{transition-delay: 0.7s;}
-.delay-8{transition-delay: 0.8s;}
-.delay-9{transition-delay: 0.9s;}
-.delay-10{transition-delay: 1s;}
+.delay-1{transition-delay: 0.1s !important;}
+.delay-2{transition-delay: 0.2s !important;}
+.delay-3{transition-delay: 0.3s !important;}
+.delay-4{transition-delay: 0.4s !important;}
+.delay-5{transition-delay: 0.5s !important;}
+.delay-6{transition-delay: 0.6s !important;}
+.delay-7{transition-delay: 0.7s !important;}
+.delay-8{transition-delay: 0.8s !important;}
+.delay-9{transition-delay: 0.9s !important;}
+.delay-10{transition-delay: 1s !important;}
 
 
 /* active */
@@ -203,8 +235,18 @@
     transform: translate(0,0) scale(1) rotate(0deg) !important;
     opacity: 1 !important;
 }
-.m-flip-left.m-act, .m-flip-right.m-act, .m-flip-up.m-act, .m-flip-down.m-act{
-    transform: perspective(2500px) rotate(0deg);
+.m-flip-left.m-act, .m-flip-right.m-act, .m-flip-up.m-act, .m-flip-down.m-act,
+.motion-wrap.m-act .m-flip-left, .motion-wrap.m-act .m-flip-right,
+.motion-wrap.m-act .m-flip-up, .motion-wrap.m-act .m-flip-down{
+    transform: perspective(2500px) rotateX(0deg) rotateY(0deg) !important;
+    opacity: 1 !important;
+}
+.m-flip-left-p.m-act > *, .m-flip-right-p.m-act > *,
+.m-flip-up-p.m-act > *, .m-flip-down-p.m-act > *,
+.motion-wrap.m-act .m-flip-left-p > *, .motion-wrap.m-act .m-flip-right-p > *,
+.motion-wrap.m-act .m-flip-up-p > *, .motion-wrap.m-act .m-flip-down-p > * {
+    transform: rotateX(0deg) rotateY(0deg) !important;
+    opacity: 1 !important;
 }
 .m-roll-lft.m-act, .m-roll-rgt.m-act, .m-roll-up.m-act, .m-roll-down.m-act{clip-path: inset(0 0 0 0); opacity: 1;}
 .motion-wrap.m-act .m-roll-lft, .motion-wrap.m-act .m-roll-rgt, .motion-wrap.m-act .m-roll-up, .motion-wrap.m-act .m-roll-down{
